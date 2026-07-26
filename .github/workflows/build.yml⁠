@@ -1,0 +1,30 @@
+name: Build UnJ4iled IPA Package
+
+on:
+  push:
+    branches: [ main, master ]
+
+jobs:
+  build-ios:
+    runs-on: macos-latest
+
+    steps:
+    - name: Checkout Repository
+      uses: actions/checkout@v4
+
+    - name: Compile Binary for ARM64 iOS Architecture
+      run: |
+        mkdir -p Payload/UnJ4iled.app
+        clang -arch arm64 -isysroot $(xcrun --sdk iphoneos --show-sdk-path) \
+              src/main.c src/kernel_attempt.c -o Payload/UnJ4iled.app/unj4iled_attempt
+        cp Info.plist Payload/UnJ4iled.app/Info.plist
+
+    - name: Package into IPA Artifact
+      run: |
+        zip -r unj4iled.ipa Payload
+
+    - name: Upload IPA Artifact
+      uses: actions/upload-artifact@v4
+      with:
+        name: unj4iled-ipa-package
+        path: unj4iled.ipa
