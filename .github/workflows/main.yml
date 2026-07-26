@@ -18,7 +18,7 @@ jobs:
         mkdir -p Payload/UnJ4iled.app
         clang -arch arm64 -isysroot $(xcrun --sdk iphoneos --show-sdk-path) \
               -framework UIKit -framework Foundation -Iinclude \
-              src/main.c src/kernel_attempt.c -o Payload/UnJ4iled.app/UnJ4iled
+              src/main.m src/kernel_attempt.c -o Payload/UnJ4iled.app/UnJ4iled
         cp Info.plist Payload/UnJ4iled.app/Info.plist
 
     - name: Package into IPA Artifact
