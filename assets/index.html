@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UnJ4iled</title>
+    <style>
+        body {
+            background-color: #000000;
+            color: #ffffff;
+            font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+            text-align: center;
+            padding-top: 100px;
+        }
+        h1 {
+            font-size: 28px;
+            margin-bottom: 20px;
+        }
+        .btn {
+            background-color: #ff3b30;
+            color: white;
+            border: none;
+            padding: 15px 40px;
+            font-size: 18px;
+            font-weight: bold;
+            border-radius: 12px;
+            cursor: pointer;
+            box-shadow: 0 4px 10px rgba(255, 59, 48, 0.3);
+        }
+        .btn:active {
+            transform: scale(0.98);
+        }
+        #status {
+            margin-top: 30px;
+            font-size: 14px;
+            color: #8e8e93;
+            padding: 0 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>UnJ4iled</h1>
+    <button class="btn" onclick="triggerJailbreak()">Jailbreak</button>
+    <div id="status"></div>
+
+    <script>
+        function triggerJailbreak() {
+            document.getElementById('status').innerText = "[!] Hardware Exception: Kernel-space memory modification blocked by Apple A16 PAC/MTE security architecture.";
+        }
+    </script>
+</body>
+</html>
