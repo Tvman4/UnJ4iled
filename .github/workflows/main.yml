@@ -21,7 +21,6 @@ jobs:
               src/main.m -o Payload/UnJ4iled.app/UnJ4iled
         cp Info.plist Payload/UnJ4iled.app/Info.plist
         cp assets/index.html Payload/UnJ4iled.app/assets/index.html
-        codesign --force --deep --sign - Payload/UnJ4iled.app
 
     - name: Package into IPA Artifact
       run: |
