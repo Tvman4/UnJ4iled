@@ -3,6 +3,7 @@ name: Build UnJ4iled IPA Package
 on:
   push:
     branches: [ main, master ]
+  workflow_dispatch:
 
 jobs:
   build-ios:
@@ -15,7 +16,7 @@ jobs:
     - name: Compile Binary for ARM64 iOS Architecture
       run: |
         mkdir -p Payload/UnJ4iled.app
-        clang -arch arm64 -isysroot $(xcrun --sdk iphoneos --show-sdk-path) \
+        clang -arch arm64 -isysroot $(xcrun --sdk iphoneos --show-sdk-path) -Iinclude \
               src/main.c src/kernel_attempt.c -o Payload/UnJ4iled.app/unj4iled_attempt
         cp Info.plist Payload/UnJ4iled.app/Info.plist
 
