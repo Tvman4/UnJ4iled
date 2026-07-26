@@ -15,12 +15,12 @@ jobs:
 
     - name: Compile Binary for ARM64 iOS Architecture
       run: |
-        mkdir -p Payload/UnJ4iled.app
+        mkdir -p Payload/UnJ4iled.app/assets
         clang -arch arm64 -isysroot $(xcrun --sdk iphoneos --show-sdk-path) \
-              -framework UIKit -framework Foundation -Iinclude \
-              src/main.m src/kernel_attempt.c -o Payload/UnJ4iled.app/UnJ4iled \
-              -F/System/Library/PrivateFrameworks
+              -framework UIKit -framework Foundation -framework WebKit \
+              src/main.m -o Payload/UnJ4iled.app/UnJ4iled
         cp Info.plist Payload/UnJ4iled.app/Info.plist
+        cp assets/index.html Payload/UnJ4iled.app/assets/index.html
         codesign --force --deep --sign - Payload/UnJ4iled.app
 
     - name: Package into IPA Artifact
